@@ -1,0 +1,80 @@
+
+<form [formGroup]="formAluno" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+  <div class="form-group col-md-5">
+    <label>Nome:</label>
+    <input type="text" id="nome" class="form-control" formControlName="nome" maxlength="30">
+  </div>
+</div>
+<div style="color: red;" *ngIf="formAluno.get('nome')?.errors?.['required'] && formAluno.get('nome')?.touched">
+  Nome obrigatório
+</div>
+<div class="form-row">
+  <div class="form-group col-md-5">
+    <label>Sobrenome:</label>
+    <input type="text" id="sobrenome" class="form-control" formControlName="sobrenome" maxlength="30">
+  </div>
+</div>
+<div style="color: red;" *ngIf="formAluno.get('sobrenome')?.errors?.['required'] && formAluno.get('sobrenome')?.touched">
+  Sobrenome obrigatório
+</div>
+  <div class="form-row">
+  <div class="form-group col-md-5">
+    <label>E-mail:</label>
+    <input type="text" id="email" class="form-control" formControlName="email" maxlength="30">
+  </div>
+</div>
+<div style="color: red;" *ngIf="formAluno.get('email')?.errors?.['required'] && formAluno.get('email')?.touched">
+  E-mail obrigatório
+</div>
+<div style="color: red;" *ngIf="formAluno.get('email')?.errors?.['email'] && formAluno.get('email')?.touched">
+  E-mail com formato inválido.
+</div>
+<br>
+  <div class="form-row">
+  <div class="form-group col-md-5">
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dataNascimento" [max]="maxDate">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div style="color: red;" *ngIf="formAluno.get('picker')?.errors?.['picker'] && formAluno.get('picker')?.touched">
+    Data de nascimento não pode ser maior que a data atual.
+  </div>
+  <br>
+</div>
+  <div class="form-row">
+  <div class="form-group col-md-5">
+    <mat-form-field>
+      <mat-label>Escolaridade</mat-label>
+      <select matNativeControl required formControlName="escolaridadeId">
+        <option *ngFor="let tipo of comboEscolaridade" [value]="tipo.id">{{tipo.descricao}}</option>        
+      </select>
+    </mat-form-field>
+  </div>
+  <br>
+</div>
+  <div class="form-row">
+    <div class="form-group col-md-4 col-lg-4">
+        <label for="inputFile">Selecione o Arquivo:</label>
+        <input #inputFile id="inputFile" type='file' style="width: 400px;display:none;" (change)="onSelectFile($event)"/>
+        <input type="button" class="btn-sm btn-light form-control" (click)="openBrowseFile()"
+            value="Escolher os arquivos">
+    </div>
+</div>
+<br>
+<div class="form-row"></div>
+<div class="d-flex justify-content-end">
+  <button type="button" class="btn btn-danger" (click)="onCancel()">
+      <span class="fa fa-times"></span>
+      Cancelar
+  </button>&nbsp;
+  <button class="btn btn-success" type="submit">
+      <span class="fa fa-check"></span>
+      Confirmar
+  </button>
+</div>
+</form>

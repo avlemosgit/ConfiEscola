@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ConfiEscola.Application\ConfiEscola.Application.csproj" />
+    <ProjectReference Include="..\ConfiEscola.Core\ConfiEscola.Core.csproj" />
+    <ProjectReference Include="..\ConfiEscola.Domain\ConfiEscola.Domain.csproj" />
+    <ProjectReference Include="..\ConfiEscola.Infra.Bus\ConfiEscola.Infra.Bus.csproj" />
+    <ProjectReference Include="..\ConfiEscola.Infra.Data\ConfiEscola.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>
